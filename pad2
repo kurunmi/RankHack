@@ -1,0 +1,70 @@
+#!/usr/bin/python3
+import math
+import time
+
+def padding(words, maxWidth):
+    final = []
+    working = []
+    current_length = 0
+    index = 0
+    for val in words:
+        vallen = len(val) if not working else len(val) + 1
+        if current_length + vallen > maxWidth:
+            #process old working, initialize working and add val to new working
+            spaces = maxWidth - current_length
+            if len(working) == 1:
+                mystr = working[0] + " " * spaces
+            else:
+                gaps = len(working) - 1
+                mdiv = math.floor((spaces/gaps)) if gaps else 0
+                rem = spaces % gaps if gaps else 0
+                mystr = ""
+                inspace = " "
+                for item in working:
+                    myspace = ""
+                    if gaps:
+                        myspace = " " * mdiv + inspace
+                        if rem:
+                            myspace += " "
+                            rem -= 1
+                        gaps -= 1
+                    item += myspace
+                    mystr += item
+            final .append(mystr)
+                #print(final)
+            working = []
+            working.append(val)
+            current_length = len(val)
+            #print(spaces, gaps, working, words, final)
+        else:
+            #Add val and update counters
+            if working:
+                current_length += 1
+            working.append(val)
+            current_length += len(val)
+        mystr = ""
+        mystr = " ".join(working)
+        mystr += (maxWidth - current_length) * " "
+    final.append(mystr)
+    return final
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    #words = ["This", "is", "an", "example", "of", "text", "justification."]
+    #words = ["kill", "Boraborabora"]
+    #words = ["What","must","be","acknowledgment","shall","be"]
+    words = ["Science","is","what","we","understand","well","enough","to","explain",
+        "to","a","computer.","Art","is","everything","else","we","do"]
+    words = ["Listen","to","many,","speak","to","a","few."]
+    maxwWidth = 6
+    print(padding(words, maxwWidth))
+
+
+
+
