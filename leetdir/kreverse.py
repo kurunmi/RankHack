@@ -11,9 +11,8 @@ def reverseKGroup(head, k):
 
     loops = count // k
 
-    ptr = dummy = head
-    prev = ptr
-    ptr = ptr.next
+    prev = dummy = ListNode(0, head)
+    ptr = prev.next
 
     for loop in range(loops):
         for _ in range(k - 1):
