@@ -11,7 +11,6 @@ def nuscores(scores):
             elif scores[i-1] < scores[i] and scores[i+1] < scores[i]:
                 new[i] -= 1
                 changed = True
-        print(scores, new, changed)
         scores = new
         new = []
 
