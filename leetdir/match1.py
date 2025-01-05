@@ -1,3 +1,5 @@
+import random
+
 def match1(points):
     if len(points) <= 1:
         return 0
@@ -32,8 +34,20 @@ def match1(points):
     print(matches)
 
 
+def pickIndex(w):
+    count = len(w) - 1
+    mys = sum(w)
+    prob = 0
+    if len(w) <2:
+        print(0)
+        return 0
+    while not prob:
+        index = random.randint(0, count)
+        prob = w[index]/ mys
+    print(w[index])
 
 if __name__ == '__main__':
     myarr = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
     arr1 = [[1,1],[2,2],[3,3]]
-    print(match1(myarr))
+    w = [1]
+    pickIndex(w)
