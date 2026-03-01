@@ -120,7 +120,7 @@ def load_user_rating_new(df, n1, n2, col1, col2, col3):
     data = np.zeros([n1, n2], dtype=np.intc)
     data_map = {}
     for value1, value2, value3 in zip(df[col1], df[col2], df[col3]):
-        value1 = int(value1)
+        value1 = int(value1) -1
         if value2 not in data_map:
             data_map[value2] = len(data_map)
         data[value1, data_map[value2]] = value3
